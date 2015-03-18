@@ -9,6 +9,8 @@
 
 .name-edit input.form-control {
     width: calc(100% - 50px);
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .score {

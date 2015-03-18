@@ -1,6 +1,4 @@
-
-
-$(document).ready(function() {
+$(document).ready(function () {
     $(window).bind('resize', setImageHeight);
     setImageHeight();
 
@@ -15,6 +13,9 @@ $(document).ready(function() {
 
     $(".js-name-edit").click(userEdit);
     $(".js-name-save").click(userSave);
+    $(".js-name-input").bind('keypress', function (e) {
+       if ( e.keyCode == 13 ) userSave();
+     });
 
     $(".js-user-add").click(userAdd);
 
@@ -61,6 +62,7 @@ $(document).ready(function() {
         currentUser = newUser;
         updateUser(currentUser);
         userEdit();
+        $(".js-name-input").select();
     }
 
     function changeCurrentUser(userId) {
