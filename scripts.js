@@ -5,8 +5,11 @@ $(document).ready(function() {
     setImageHeight();
 
     var users = [];
-    var currentUser = {id:0, name:"jos", level:1, bonus:2};
-    showUser(currentUser);
+    users.push({id:0, name:"jos", level:1, bonus:2});
+    var currentUser = users[0];
+
+    updateUser(currentUser);
+    showUserList(users);
 
     $(".js-bonus-min").click(bonusMin);
     $(".js-bonus-plus").click(bonusPlus);
@@ -18,19 +21,19 @@ $(document).ready(function() {
 
     function bonusMin() {
         currentUser.bonus--;
-        showUser(currentUser);
+        updateUser(currentUser);
     }
     function bonusPlus() {
         currentUser.bonus++;
-        showUser(currentUser);
+        updateUser(currentUser);
     }
     function levelMin() {
         currentUser.level--;
-        showUser(currentUser);
+        updateUser(currentUser);
     }
     function levelPlus() {
         currentUser.level++;
-        showUser(currentUser);
+        updateUser(currentUser);
     }
 
     function userEdit() {
@@ -41,13 +44,13 @@ $(document).ready(function() {
     }
     function userSave() {
         currentUser.name = $(".js-name-input").val();
-        showUser(currentUser);
+        updateUser(currentUser);
 
         $("h1.name").removeClass("hidden");
         $("h1.name-edit").addClass("hidden");
     }
 
-    function showUser(user) {
+    function updateUser(user) {
         $(".js-name").html(user.name);
         $(".js-level").html(user.level);
         $(".js-bonus").html(user.bonus);
@@ -55,6 +58,20 @@ $(document).ready(function() {
 
         $(".js-bonus-min").prop("disabled", user.bonus <= 0);
         $(".js-level-min").prop("disabled", user.level <= 1);
+        showUserList(users);
+    }
+
+    function showUserList(userList) {
+        var output = "";
+        userList.forEach(function (user) {
+            output += user === currentUser ? "<tr class='self'>" : "<tr>";
+            output += "<td>" + user.name + "</td>";
+            output += "<td>" + user.level + "</td>";
+            output += "<td>" + user.bonus + "</td>";
+            output += "<td>" + (user.level + user.bonus) + "</td>";
+            output += "</tr>";
+        });
+        $(".js-users").html(output);
     }
 
     function setImageHeight() {
