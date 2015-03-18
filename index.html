@@ -52,24 +52,28 @@
         <div class="col-sm-6 col-xs-12">
           <div class="settings">
             <h1 class="name">
-              <span>Bart</span>
-              <small>16 points</small>
-              <button class="btn btn-default edit-player"><span class="glyphicon glyphicon-pencil"></span></button>
+              <span class='js-name'></span>
+              <small><span class='js-points'>0</span> points</small>
+              <button class="btn btn-default edit-player js-name-edit"><span class="glyphicon glyphicon-pencil"></span></button>
+            </h1>
+            <h1 class="name-edit form-inline hidden">
+              <input type="text" class="form-control js-name-input">
+              <button class="btn btn-default save-player js-name-save"><span class="glyphicon glyphicon-ok"></span></button>
             </h1>
             <h2 class="level">
               <span>Level</span>
               <div class="pull-right">
-                <button class="btn btn-default pull-left"><span class="glyphicon glyphicon-minus"></span></button>
-                <span class="score">3</span>
-                <button class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></button>
+                <button class="btn btn-default pull-left js-level-min"><span class="glyphicon glyphicon-minus"></span></button>
+                <span class="score js-level">0</span>
+                <button class="btn btn-default js-level-plus"><span class="glyphicon glyphicon-plus"></span></button>
               </div>
             </h2>
             <h2 class="bonus">
               <span>Bonus</span>
               <div class="pull-right">
-                <button class="btn btn-default pull-left"><span class="glyphicon glyphicon-minus"></span></button>
-                <span class="score">13</span>
-                <button class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></button>
+                <button class="btn btn-default pull-left js-bonus-min"><span class="glyphicon glyphicon-minus"></span></button>
+                <span class="score js-bonus">0</span>
+                <button class="btn btn-default js-bonus-plus"><span class="glyphicon glyphicon-plus"></span></button>
               </div>
             </h2>
           </div>
