@@ -1,0 +1,31 @@
+.container.content {
+    margin-top: 50px;
+}
+
+.edit-player {
+    float: right;
+    margin-top: 3px;
+}
+
+.score {
+  width: 60px;
+  float: left;
+  text-align: center;
+}
+
+tr.self {
+    font-weight: bold;
+}
+
+.listing .table td:not(:first-child),
+.listing .table th:not(:first-child) {
+    text-align: center;
+}
+
+.table {
+    font-size: 130%;
+}
+
+.board-div {
+    text-align: center;
+}

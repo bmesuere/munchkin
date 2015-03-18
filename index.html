@@ -1,0 +1,131 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Munchkin score keeping app">
+    <meta name="author" content="Bart Mesuere">
+
+    <title>Munchkin score keeping</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="scripts.js"></script>
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Munchkin Score Keeping</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container content">
+      <div class="row">
+        <div class="col-sm-6 hidden-xs board-div">
+          <img class="board" src="board.jpg">
+        </div>
+        <div class="col-sm-6 col-xs-12">
+          <div class="settings">
+            <h1 class="name">
+              <span>Bart</span>
+              <small>16 points</small>
+              <button class="btn btn-default edit-player"><span class="glyphicon glyphicon-pencil"></span></button>
+            </h1>
+            <h2 class="level">
+              <span>Level</span>
+              <div class="pull-right">
+                <button class="btn btn-default pull-left"><span class="glyphicon glyphicon-minus"></span></button>
+                <span class="score">3</span>
+                <button class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></button>
+              </div>
+            </h2>
+            <h2 class="bonus">
+              <span>Bonus</span>
+              <div class="pull-right">
+                <button class="btn btn-default pull-left"><span class="glyphicon glyphicon-minus"></span></button>
+                <span class="score">13</span>
+                <button class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></button>
+              </div>
+            </h2>
+          </div>
+          <hr>
+          <div class="listing">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Level</th>
+                  <th>Bonus</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+                <tbody>
+                  <tr>
+                    <td>Jappie</td>
+                    <td>8</td>
+                    <td>4</td>
+                    <td>12</td>
+                  </tr>
+                  <tr>
+                    <td>Simon</td>
+                    <td>6</td>
+                    <td>9</td>
+                    <td>15</td>
+                  </tr>
+                  <tr>
+                    <td>Catherine</td>
+                    <td>6</td>
+                    <td>3</td>
+                    <td>9</td>
+                  </tr>
+                  <tr class="self">
+                    <td>Bart</td>
+                    <td>3</td>
+                    <td>13</td>
+                    <td>16</td>
+                  </tr>
+                  <tr>
+                    <td>Mieke</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                  </tr>
+                  <tr>
+                    <td>Cedric</td>
+                    <td>1</td>
+                    <td>22</td>
+                    <td>23</td>
+                  </tr>
+                </tbody>
+              </table>
+          </div>
+        </div>
+      </div>
+    </div><!-- /.container -->
+  </body>
+</html>
