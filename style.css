@@ -24,10 +24,14 @@ tr.self {
 .listing .table td:not(:first-child),
 .listing .table th:not(:first-child) {
     text-align: center;
+    width: 20%;
 }
 
 .table {
     font-size: 130%;
+}
+tbody {
+    cursor: pointer;
 }
 
 .board-div {

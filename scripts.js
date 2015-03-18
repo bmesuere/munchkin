@@ -40,6 +40,8 @@ $(document).ready(function() {
 
         $("h1.name").addClass("hidden");
         $("h1.name-edit").removeClass("hidden");
+
+        $(".js-name-input").focus();
     }
     function userSave() {
         currentUser.name = $(".js-name-input").val();
@@ -61,6 +63,11 @@ $(document).ready(function() {
         userEdit();
     }
 
+    function changeCurrentUser(userId) {
+        currentUser = users.filter(function (user) { return user.id === userId; })[0];
+        updateUser(currentUser);
+    }
+
     function updateUser(user) {
         $(".js-name").html(user.name);
         $(".js-level").html(user.level);
@@ -74,8 +81,12 @@ $(document).ready(function() {
 
     function showUserList(userList) {
         var output = "";
+
+        userList.sort(function (a, b) { return b.level - a.level; });
         userList.forEach(function (user) {
-            output += user === currentUser ? "<tr class='self'>" : "<tr>";
+            output += "<tr data-id='" + user.id + "'";
+            output += user === currentUser ? " class='self'" : "";
+            output += ">"
             output += "<td>" + user.name + "</td>";
             output += "<td>" + user.level + "</td>";
             output += "<td>" + user.bonus + "</td>";
@@ -83,6 +94,8 @@ $(document).ready(function() {
             output += "</tr>";
         });
         $(".js-users").html(output);
+
+        $(".js-users tr").click(function () { changeCurrentUser($(this).data("id")); });
     }
 
     function setImageHeight() {
