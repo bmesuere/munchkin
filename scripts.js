@@ -5,11 +5,8 @@ $(document).ready(function() {
     setImageHeight();
 
     var users = [];
-    users.push({id:0, name:"jos", level:1, bonus:2});
-    var currentUser = users[0];
-
-    updateUser(currentUser);
-    showUserList(users);
+    var currentUser = {};
+    userAdd();
 
     $(".js-bonus-min").click(bonusMin);
     $(".js-bonus-plus").click(bonusPlus);
@@ -18,6 +15,8 @@ $(document).ready(function() {
 
     $(".js-name-edit").click(userEdit);
     $(".js-name-save").click(userSave);
+
+    $(".js-user-add").click(userAdd);
 
     function bonusMin() {
         currentUser.bonus--;
@@ -48,6 +47,18 @@ $(document).ready(function() {
 
         $("h1.name").removeClass("hidden");
         $("h1.name-edit").addClass("hidden");
+    }
+    function userAdd() {
+        newUser = {
+            id : users.length,
+            name : "Munchkin",
+            level : 1,
+            bonus : 0
+        };
+        users.push(newUser);
+        currentUser = newUser;
+        updateUser(currentUser);
+        userEdit();
     }
 
     function updateUser(user) {
