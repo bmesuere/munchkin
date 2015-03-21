@@ -4,6 +4,7 @@ $(document).ready(function () {
 
     var users = [];
     var currentUser = {};
+    var isEdit = false;
     userAdd();
 
     $(".js-bonus-min").click(bonusMin);
@@ -37,6 +38,7 @@ $(document).ready(function () {
     }
 
     function userEdit() {
+        isEdit = true;
         $(".js-name-input").val(currentUser.name);
 
         $("h1.name").addClass("hidden");
@@ -45,6 +47,7 @@ $(document).ready(function () {
         $(".js-name-input").focus();
     }
     function userSave() {
+        isEdit = false;
         currentUser.name = $(".js-name-input").val();
         updateUser(currentUser);
 
@@ -52,6 +55,9 @@ $(document).ready(function () {
         $("h1.name-edit").addClass("hidden");
     }
     function userAdd() {
+        if (isEdit) {
+            userSave();
+        }
         newUser = {
             id : users.length,
             name : "Munchkin",
@@ -66,8 +72,31 @@ $(document).ready(function () {
     }
 
     function changeCurrentUser(userId) {
-        currentUser = users.filter(function (user) { return user.id === userId; })[0];
+        if (isEdit) {
+            userSave();
+        }
+        currentUser = getUserById(userId);
         updateUser(currentUser);
+    }
+
+    function deleteUser(userId, ask) {
+        var user = getUserById(userId),
+            confirmation = true,
+            i = 0;
+        if (ask) {
+            confirmation = confirm("Delete " + user.name + "?");
+        }
+        if (confirmation) {
+            while (users[i] !== user) i++;
+            users.splice(i, 1);
+            if (users.length === 0) {
+                userAdd();
+            }
+            if (currentUser === user) {
+                changeCurrentUser(users[0].id);
+            }
+            showUserList(users);
+        }
     }
 
     function updateUser(user) {
@@ -78,6 +107,8 @@ $(document).ready(function () {
 
         $(".js-bonus-min").prop("disabled", user.bonus <= 0);
         $(".js-level-min").prop("disabled", user.level <= 1);
+        $(".js-plural-points").toggleClass("hidden", (user.level + user.bonus) === 1);
+
         showUserList(users);
     }
 
@@ -97,7 +128,14 @@ $(document).ready(function () {
         });
         $(".js-users").html(output);
 
-        $(".js-users tr").click(function () { changeCurrentUser($(this).data("id")); });
+        $(".js-users tr")
+            .click(function () { changeCurrentUser($(this).data("id")); })
+            .longClick(function () { deleteUser($(this).data("id"), true); });
+
+    }
+
+    function getUserById(id) {
+        return users.filter(function (user) { return user.id === id; })[0];
     }
 
     function setImageHeight() {
@@ -105,3 +143,22 @@ $(document).ready(function () {
     }
 
 });
+
+(function($) {
+    $.fn.longClick = function(callback, timeout) {
+        var timer;
+        timeout = timeout || 500;
+        $(this).mousedown(function() {
+            var that = $(this);
+            timer = setTimeout(function() {
+                callback.call(that);
+            }, timeout);
+            return false;
+        });
+        $(document).mouseup(function() {
+            clearTimeout(timer);
+            return false;
+        });
+    };
+
+})(jQuery);

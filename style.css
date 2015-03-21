@@ -39,3 +39,6 @@ tbody {
 .board-div {
     text-align: center;
 }
+.name {
+    height: 41px;
+}
