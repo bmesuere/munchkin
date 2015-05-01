@@ -4,11 +4,10 @@
 
 .edit-player {
     float: right;
-    margin-top: 6px;
 }
 
 .name-edit input.form-control {
-    width: calc(100% - 50px);
+    width: calc(100% - 63px);
     display: inline-block;
     vertical-align: middle;
 }
@@ -17,6 +16,7 @@
   width: 60px;
   float: left;
   text-align: center;
+  font-size: larger;
 }
 
 tr.self {
@@ -40,10 +40,8 @@ tbody {
     text-align: center;
 }
 .name {
-    height: 41px;
+    height: 47px;
 }
-.position-1 {
-    width: 20%;
-    height: 20%;
-    background-color: steelblue;
+.bonus .pull-right, .level .pull-right {
+  margin-top: -5px;
 }

@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable = no">
     <meta name="description" content="Munchkin score keeping app">
     <meta name="author" content="Bart Mesuere">
 
@@ -15,6 +15,7 @@
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="jquery.mobile.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
     <link rel="stylesheet" href="style.css">
@@ -23,26 +24,26 @@
 
   <body>
 
-    <!--<nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-          </button>
+          </button>-->
           <a class="navbar-brand" href="#">Munchkin Score Keeping</a>
         </div>
-        <div id="navbar" class="collapse navbar-collapse">
+        <!--<div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
-        </div>
+        </div>-->
       </div>
-    </nav>-->
+    </nav>
 
     <div class="container content">
       <div class="row">
@@ -56,32 +57,33 @@
             <h1 class="name">
               <span class='js-name'></span>
               <small><span class='js-points'>0</span> point<span class="js-plural-points">s</span></small>
-              <button class="btn btn-default edit-player js-name-edit"><span class="glyphicon glyphicon-pencil"></span></button>
+              <button class="btn btn-lg btn-default edit-player js-name-edit"><span class="glyphicon glyphicon-pencil"></span></button>
             </h1>
             <h1 class="name-edit form-inline hidden">
-              <input type="text" class="form-control js-name-input">
-              <button class="btn btn-default save-player js-name-save"><span class="glyphicon glyphicon-ok"></span></button>
+              <input type="text" class="form-control input-lg js-name-input">
+              <button class="btn btn-lg btn-default save-player js-name-save"><span class="glyphicon glyphicon-ok"></span></button>
             </h1>
             <h2 class="level">
               <span>Level</span>
               <div class="pull-right">
-                <button class="btn btn-default pull-left js-level-min"><span class="glyphicon glyphicon-minus"></span></button>
+                <button class="btn btn-lg btn-default pull-left js-level-min"><span class="glyphicon glyphicon-minus"></span></button>
                 <span class="score js-level">0</span>
-                <button class="btn btn-default js-level-plus"><span class="glyphicon glyphicon-plus"></span></button>
+                <button class="btn btn-lg btn-default js-level-plus"><span class="glyphicon glyphicon-plus"></span></button>
               </div>
             </h2>
             <h2 class="bonus">
               <span>Bonus</span>
               <div class="pull-right">
-                <button class="btn btn-default pull-left js-bonus-min"><span class="glyphicon glyphicon-minus"></span></button>
+                <button class="btn btn-lg btn-default pull-left js-bonus-min"><span class="glyphicon glyphicon-minus"></span></button>
                 <span class="score js-bonus">0</span>
-                <button class="btn btn-default js-bonus-plus"><span class="glyphicon glyphicon-plus"></span></button>
+                <button class="btn btn-lg btn-default js-bonus-plus"><span class="glyphicon glyphicon-plus"></span></button>
               </div>
             </h2>
           </div>
       </div>
       <div class="col-md-6 col-sm-12 col-xs-12">
           <div class="hidden-md hidden-lg"><hr></div>
+          <div class="hidden-sm hidden-xs" style="margin-top: 20px"></div>
           <div class="listing">
             <table class="table">
               <thead>

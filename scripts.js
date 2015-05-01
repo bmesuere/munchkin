@@ -7,10 +7,10 @@ $(document).ready(function () {
     var isEdit = false;
     userAdd();
 
-    $(".js-bonus-min").click(bonusMin);
-    $(".js-bonus-plus").click(bonusPlus);
-    $(".js-level-min").click(levelMin);
-    $(".js-level-plus").click(levelPlus);
+    $(".js-bonus-min").tap(bonusMin);
+    $(".js-bonus-plus").tap(bonusPlus);
+    $(".js-level-min").tap(levelMin);
+    $(".js-level-plus").tap(levelPlus);
 
     $(".js-name-edit").click(userEdit);
     $(".js-name-save").click(userSave);
@@ -18,7 +18,7 @@ $(document).ready(function () {
        if ( e.keyCode == 13 ) userSave();
      });
 
-    $(".js-user-add").click(userAdd);
+    $(".js-user-add").tap(userAdd);
 
     function bonusMin() {
         currentUser.bonus--;
@@ -129,8 +129,8 @@ $(document).ready(function () {
         $(".js-users").html(output);
 
         $(".js-users tr")
-            .click(function () { changeCurrentUser($(this).data("id")); })
-            .longClick(function () { deleteUser($(this).data("id"), true); });
+            .tap(function () { changeCurrentUser($(this).data("id")); })
+            .taphold(function () { deleteUser($(this).data("id"), true); });
 
     }
 
@@ -143,22 +143,3 @@ $(document).ready(function () {
     }
 
 });
-
-(function($) {
-    $.fn.longClick = function(callback, timeout) {
-        var timer;
-        timeout = timeout || 500;
-        $(this).mousedown(function() {
-            var that = $(this);
-            timer = setTimeout(function() {
-                callback.call(that);
-            }, timeout);
-            return false;
-        });
-        $(document).mouseup(function() {
-            clearTimeout(timer);
-            return false;
-        });
-    };
-
-})(jQuery);
