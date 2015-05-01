@@ -42,3 +42,8 @@ tbody {
 .name {
     height: 41px;
 }
+.position-1 {
+    width: 20%;
+    height: 20%;
+    background-color: steelblue;
+}
