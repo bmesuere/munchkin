@@ -6,7 +6,6 @@ $(document).ready(function () {
     var currentUser = {};
     var isEdit = false;
     var userListRef = new Firebase('https://resplendent-inferno-4684.firebaseio.com//score');
-    userAdd();
 
     userListRef.on('child_added', function (userSnapshot) {
         handleUserAdded(userSnapshot);
@@ -90,6 +89,7 @@ $(document).ready(function () {
         }
         currentUser = getUserById(userId);
         updateUser(currentUser);
+        showUserList(users);
     }
 
     function deleteUser(userId, ask) {
@@ -141,6 +141,9 @@ $(document).ready(function () {
     function handleUserAdded(userSnapshot) {
         users.push(userSnapshot.val());
         showUserList(users);
+        if (users.length === 1) {
+            changeCurrentUser(users[0].id);
+        }
     }
     function handleUserRemoved(userSnapshot) {
         var user = getUserById(userSnapshot.val().id);
