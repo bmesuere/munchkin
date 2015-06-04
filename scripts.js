@@ -5,7 +5,18 @@ $(document).ready(function () {
     var users = [];
     var currentUser = {};
     var isEdit = false;
+    var userListRef = new Firebase('https://resplendent-inferno-4684.firebaseio.com//score');
     userAdd();
+
+    userListRef.on('child_added', function (userSnapshot) {
+        handleUserAdded(userSnapshot);
+    });
+    userListRef.on('child_removed', function (userSnapshot) {
+        handleUserRemoved(userSnapshot);
+    });
+    userListRef.on('child_changed', function (userSnapshot) {
+        handleUserChanged(userSnapshot);
+    });
 
     $(".js-bonus-min").tap(bonusMin);
     $(".js-bonus-plus").tap(bonusPlus);
@@ -59,12 +70,14 @@ $(document).ready(function () {
             userSave();
         }
         newUser = {
-            id : users.length,
+            id : getRandomId(),
             name : "Munchkin",
             level : 1,
             bonus : 0
         };
-        users.push(newUser);
+
+        userListRef.child(newUser.id).set(newUser);
+
         currentUser = newUser;
         updateUser(currentUser);
         userEdit();
@@ -87,19 +100,12 @@ $(document).ready(function () {
             confirmation = confirm("Delete " + user.name + "?");
         }
         if (confirmation) {
-            while (users[i] !== user) i++;
-            users.splice(i, 1);
-            if (users.length === 0) {
-                userAdd();
-            }
-            if (currentUser === user) {
-                changeCurrentUser(users[0].id);
-            }
-            showUserList(users);
+            userListRef.child(user.id).remove();
         }
     }
 
     function updateUser(user) {
+        userListRef.child(user.id).set(user);
         $(".js-name").html(user.name);
         $(".js-level").html(user.level);
         $(".js-bonus").html(user.bonus);
@@ -108,8 +114,6 @@ $(document).ready(function () {
         $(".js-bonus-min").prop("disabled", user.bonus <= 0);
         $(".js-level-min").prop("disabled", user.level <= 1);
         $(".js-plural-points").toggleClass("hidden", (user.level + user.bonus) === 1);
-
-        showUserList(users);
     }
 
     function showUserList(userList) {
@@ -134,8 +138,41 @@ $(document).ready(function () {
 
     }
 
+    function handleUserAdded(userSnapshot) {
+        users.push(userSnapshot.val());
+        showUserList(users);
+    }
+    function handleUserRemoved(userSnapshot) {
+        var user = getUserById(userSnapshot.val().id);
+        var i = 0;
+        while (users[i] !== user) i++;
+        users.splice(i, 1);
+        if (users.length === 0) {
+            userAdd();
+        }
+        if (currentUser === user) {
+            changeCurrentUser(users[0].id);
+        }
+        showUserList(users);
+    }
+    function handleUserChanged(userSnapshot) {
+        var updatedUser = userSnapshot.val();
+        var user = getUserById(updatedUser.id);
+        user.name = updatedUser.name;
+        user.level = updatedUser.level;
+        user.bonus = updatedUser.bonus;
+        if (currentUser.id === user.id) {
+            updateUser(user);
+        }
+        showUserList(users);
+    }
+
     function getUserById(id) {
         return users.filter(function (user) { return user.id === id; })[0];
+    }
+
+    function getRandomId() {
+        return Math.floor((Math.random() * 1000000) + 1);
     }
 
     function setImageHeight() {
